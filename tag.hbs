@@ -1,0 +1,40 @@
+{{!< default}}
+
+<div class="content-area">
+  <main class="site-main">
+    {{#tag}}
+      <section class="tag kg-width-normal">
+        <h1 class="tag-name">{{name}}</h1>
+        {{#if description}}
+          <div class="tag-description">{{description}}</div>
+        {{/if}}
+        {{#get "tags" limit="all" filter="id:-{{id}}" as |tags|}}
+          {{#if tags}}
+            <div class="tag-list">
+              <span class="tag-list-label">{{t "More:"}}</span>
+              {{#foreach tags}}
+                <a class="tag-list-item" href="{{url}}">{{name}}</a>
+              {{/foreach}}
+            </div>
+          {{/if}}
+        {{/get}}
+        {{#if feature_image}}
+          <div class="tag-media kg-width-large u-placeholder horizontal">
+            <img class="lazyload u-object-fit"
+              data-srcset="{{> srcset}}"
+              data-sizes="auto"
+              src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              alt="{{name}}"
+            >
+          </div>
+        {{/if}}
+      </section>
+    {{/tag}}
+    <div class="post-feed kg-width-normal">
+      {{#foreach posts visibility="all"}}
+        {{> "loop"}}
+      {{/foreach}}
+    </div>
+    {{pagination}}
+  </main>
+</div>
